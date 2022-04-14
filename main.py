@@ -1,11 +1,14 @@
+import matplotlib.pyplot
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from nba_api.stats.static import teams
 from nba_api.stats.endpoints import leaguegamefinder
+import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 
-print(' 2014-15 = 1', '\n', '2015-16 = 2', '\n','2016-17 = 3', '\n','2017-18 = 4', '\n','2018-19 = 5', '\n', '2019-20 = 6', '\n','2020-21 = 7', '\n')
+print(' 2014-15 = 1', '\n', '2015-16 = 2', '\n', '2016-17 = 3', '\n', '2017-18 = 4', '\n', '2018-19 = 5', '\n', '2019-20 = 6', '\n', '2020-21 = 7', '\n')
 while True:
     try:
         season = int(input('Please select a season: '))
@@ -14,8 +17,7 @@ while True:
         continue
     break
 
-
-#DEFAULT SEASON
+# DEFAULT SEASON
 picked_season = '2014-15'
 
 match season:
@@ -90,7 +92,6 @@ for index, row in df_game_data.iterrows():
                     df_game_data.loc[index, 'RIGHT_ELO'] = df_all_teams.loc[i, 'ELO']
                     df_all_teams.loc[i, 'ELO'] = df_all_teams.loc[i, 'ELO'] - 25
 
-
 print('Training the model with the first 70% of the season...')
 X = df_game_data.drop(columns=['GAME_ID', 'MATCHUP', 'WL'])
 y = df_game_data['WL']
@@ -107,3 +108,16 @@ print('The model has predicted:', "{:.2%}".format(score) + '%', 'of the final 30
 
 df_game_data.to_csv('traindata.csv', sep='\t', encoding='utf-8')
 df_all_teams.to_csv('teamelo.csv', sep='\t', encoding='utf-8')
+
+# Displays graph of win loss percentages
+wl = ['Wins', 'Loses']
+slices = predictions
+wrong = 1.00 - score
+correct_incorrect = [score, wrong]
+plt.pie(correct_incorrect,
+        labels=wl,
+        explode=(0.025, 0),
+        autopct='%1.1f%%')
+
+plt.title('Win Loss Graph')
+plt.show()
