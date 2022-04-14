@@ -5,9 +5,7 @@ from nba_api.stats.static import teams
 from nba_api.stats.endpoints import leaguegamefinder
 import pandas as pd
 
-# FINDS TEAMS FOR THE YEAR YOU PICKED
-
-print('Creaing dataset from season you picked!')
+print('Creating dataset from season you picked!')
 
 all_games = leaguegamefinder.LeagueGameFinder(league_id_nullable='00', season_nullable='2015-16', season_type_nullable='Regular Season').get_data_frames()[0]
 df_game_data = pd.DataFrame(all_games)
