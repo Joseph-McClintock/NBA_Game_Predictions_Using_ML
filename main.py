@@ -106,4 +106,4 @@ score = accuracy_score(y_test, predictions)
 print('The model has predicted:', "{:.2%}".format(score) + '%', 'of the final 30% of games correct!', '\n')
 
 df_game_data.to_csv('traindata.csv', sep='\t', encoding='utf-8')
-#df_all_teams.to_csv('teamelo.csv', sep='\t', encoding='utf-8')
+df_all_teams.to_csv('teamelo.csv', sep='\t', encoding='utf-8')
