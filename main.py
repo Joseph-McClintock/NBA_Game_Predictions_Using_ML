@@ -5,9 +5,41 @@ from nba_api.stats.static import teams
 from nba_api.stats.endpoints import leaguegamefinder
 import pandas as pd
 
+print(' 2014-15 = 1', '\n', '2015-16 = 2', '\n','2016-17 = 3', '\n','2017-18 = 4', '\n','2018-19 = 5', '\n', '2019-20 = 6', '\n','2020-21 = 7', '\n')
+while True:
+    try:
+        season = int(input('Please select a season: '))
+    except ValueError:
+        print('Please enter a number')
+        continue
+    break
+
+
+#DEFAULT SEASON
+picked_season = '2014-15'
+
+match season:
+    case 1:
+        picked_season = '2014-15'
+    case 2:
+        picked_season = '2015-16'
+    case 3:
+        picked_season = '2016-17'
+    case 4:
+        picked_season = '2017-18'
+    case 5:
+        picked_season = '2018-19'
+    case 6:
+        picked_season = '2019-20'
+    case 7:
+        picked_season = '2020-21'
+    case _:
+        print('No season associated with', str(season) + ', defaulting to 2014-15 season')
+        picked_season = '2014-15'
+
 print('Creating dataset from season you picked!')
 
-all_games = leaguegamefinder.LeagueGameFinder(league_id_nullable='00', season_nullable='2015-16', season_type_nullable='Regular Season').get_data_frames()[0]
+all_games = leaguegamefinder.LeagueGameFinder(league_id_nullable='00', season_nullable=picked_season, season_type_nullable='Regular Season').get_data_frames()[0]
 df_game_data = pd.DataFrame(all_games)
 df_game_data = df_game_data.dropna()
 df_game_data = df_game_data.drop_duplicates(subset=['GAME_ID'], keep='last')
@@ -71,7 +103,7 @@ predictions = model.predict(X_test)
 
 score = accuracy_score(y_test, predictions)
 
-print('The model has predicted:', "{:.2%}".format(score) + '%', 'of the final 30% of the games correct!', '\n')
+print('The model has predicted:', "{:.2%}".format(score) + '%', 'of the final 30% of games correct!', '\n')
 
 df_game_data.to_csv('traindata.csv', sep='\t', encoding='utf-8')
 df_all_teams.to_csv('teamelo.csv', sep='\t', encoding='utf-8')
