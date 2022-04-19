@@ -1,4 +1,6 @@
 # NBA_Game_Predictions_Using_ML
+Website to test it out
+https://yam-bets-nba-game-predictions.azurewebsites.net/
 
 Allows the user to simulate an NBA season between 2014 and 2021.
 
