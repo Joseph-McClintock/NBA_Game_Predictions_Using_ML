@@ -18,5 +18,5 @@ The ELO is used to help the model make the prediction.
 All the data is collected using the NBA_api.
 
 ## Things to change
-1. Rework entire elo system
-2. Add end of season single game simulation
+1. Rework entire elo system - [x]
+2. Add end of season single game simulation - []
