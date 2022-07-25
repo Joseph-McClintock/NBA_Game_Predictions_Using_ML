@@ -1,6 +1,7 @@
 # NBA_Game_Predictions_Using_ML
 Website to test it out: 
-https://nba-game-predicions.azurewebsites.net/
+The website may take some time to load because i'm using the free version of Azure
+https://nba-game-predictions.azurewebsites.net/
 
 Allows the user to simulate an NBA season between 2014 and 2021.
 
@@ -21,4 +22,4 @@ All the data is collected using the NBA_api.
 
 ## Things to change 
 1. Rework entire elo system ✓
-2. Add end of season single game simulation	_
+2. Add end of season single game simulation	_ (Currently in progress as of 7/24/2022)
